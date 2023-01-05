@@ -1,4 +1,4 @@
-namespace QLthueBao.Models
+namespace QLthueBao.Models.DomainModel
 {
     using System;
     using System.Collections.Generic;

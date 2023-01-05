@@ -1,4 +1,4 @@
-namespace QLthueBao.Models
+namespace QLthueBao.Models.DomainModel
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace QLthueBao.Models
     {
         public int Id { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         public string Mo_ta { get; set; }

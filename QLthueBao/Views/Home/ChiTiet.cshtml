@@ -1,0 +1,36 @@
+﻿@model  QLthueBao.Models.ViewModel.ChiTietViewModel
+
+<main class="con">
+
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+        <img src="@Url.Content(Model.GoiCuoc.Image)" alt="">
+    </div>
+
+
+    <!-- Right Column -->
+    <div class="right-column">
+
+        <!-- Product Description -->
+        <div class="product-description">
+            <span>Gói Cước @Model.LoaiGoiCuoc.Name</span>
+            <h1>@Model.GoiCuoc.Name</h1>
+            <p>@Model.GoiCuoc.MoTa</p>
+        </div>
+
+        <!-- Cable Configuration -->
+        <div class="cable-config">
+            <div class="cable-choose">
+                <button>tên gói cước<h5>@Model.GoiCuoc.Name</h5></button>
+                <button>giá gói cước<h5>@Model.GoiCuoc.Gia đ</h5></button>
+                <button>thời gian<h5>@Model.GoiCuoc.Thoi_han_d_ ngày</h5></button>
+            </div>
+
+        </div>   
+        <!-- Product Pricing -->
+        <h4>@Model.GoiCuoc.Gia đ</h4>
+        <div class="product-price">
+            <a href="@Url.Action("thanhtoangoi", "giaodich", new {idGoi = Model.GoiCuoc.Id})" class="cart-btn">Đăng Ký</a>
+        </div>
+    </div>
+</main>

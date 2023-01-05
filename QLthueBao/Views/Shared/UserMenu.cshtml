@@ -1,0 +1,12 @@
+﻿@{
+    var session = Session["UserID"];
+}
+
+@if (session == null)
+{
+    <a href="@Url.Action("login", "account")" class="btn btn-primary px-4">Đăng Nhập</a>
+}
+else
+{
+    <a href="@Url.Action("logout", "account")">Sign Out</a>
+}

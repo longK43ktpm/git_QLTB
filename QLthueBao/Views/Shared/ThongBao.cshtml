@@ -1,0 +1,12 @@
+﻿
+<body>
+    <div class="container" style="margin-top:50px;margin-left:auto; margin-right:auto; min-height:400px">
+            <div>
+                <h4>@Session["tb"]</h4>
+                <hr />
+            </div>
+            <p>
+                <a href="@Url.Action(Session["action"].ToString(), Session["controller"].ToString())">Bcak to @Session["action"]</a>
+            </p>
+    </div>
+</body>

@@ -1,0 +1,103 @@
+﻿@model QLthueBao.Models.ViewModel.GoiCuocViewModel
+
+@{
+    ViewBag.Title = "GoiCuoc";
+}
+@{ 
+    string a1 = "", a2 = "", a3 = "";
+    string b1 = "", b2 = "", b3 = "";
+    switch (Model.page)
+    {
+        case 1:
+            a1 = "active";
+            b2 = "hidden"; b3 = "hidden";
+            break;
+        case 2:
+            a2 = "active";
+            b1 = "hidden"; b3 = "hidden";
+            break;
+        case 3:
+            a3 = "active";
+            b1 = "hidden"; b2 = "hidden";
+            break;
+    }
+}
+<!-- Goi Cuoc -->
+<div class="row" style="width: 100%; max-width: 1100px; margin-right: auto; margin-left: auto;margin-top:30px">
+    <p class="section-title" style="margin-top:20px;margin-right:20px"><span class="px-2" style="font-size:33px">Các Gói Cước</span></p>
+    <div class="tm-paging-links">
+        <ul>
+            <li class="tm-paging-item"><a href="#" class="tm-paging-link @a1">Data</a></li>
+            <li class="tm-paging-item"><a href="#" class="tm-paging-link @a2">Thoại</a></li>
+            <li class="tm-paging-item"><a href="#" class="tm-paging-link @a3">SMS</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Gallery -->
+<div class="row tm-gallery">
+    <!-- gallery page 1 -->
+    <div id="tm-gallery-page-data" class="tm-gallery-page @b1">
+        @for (int i = 0; i < Model.DSGoiData.Count(); i++)
+        {
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm mb-2">
+                    <img class="card-img-top mb-2" src="@Url.Content(Model.DSGoiData.ElementAt(i).Image)" alt="">
+                    <div class="card-body bg-light text-center p-0">
+                        <h4 class="">@Model.DSGoiData.ElementAt(i).Name</h4>
+                        <div class="d-flex justify-content-center mb-3">
+                            <small class="mr-2"><i class="fa fa-rss text-primary"></i> @Model.DSGoiData.ElementAt(i).Luu_luong GB </small>
+                            <small class="mr-2"><i class="fa fa-rss-square text-primary"></i> @Model.DSGoiData.ElementAt(i).Thoi_han_d_ Ngày </small>
+                            <small class="mr-2"><i class="fa fa-shopping-cart text-primary"></i> Lượt mua: @Model.DSGoiData.ElementAt(i).Luot_mua</small>
+                        </div>
+                        <h6><i class="fa fa-tags text-primary"></i>Giá: @Model.DSGoiData.ElementAt(i).Gia đ </h6>
+                        <a href="@Url.Content("~/Home/ChiTiet/"+Model.DSGoiData.ElementAt(i).Id)" class="btn btn-primary px-4 mx-auto my-2">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div> <!-- gallery page 1 -->
+    <!-- gallery page 2 -->
+    <div id="tm-gallery-page-thoại" class="tm-gallery-page @b2">
+        @for (int i = 0; i < Model.DSGoiThoai.Count(); i++)
+        {
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm mb-2">
+                    <img class="card-img-top mb-2" src="@Url.Content(Model.DSGoiThoai.ElementAt(i).Image)" alt="">
+                    <div class="card-body bg-light text-center p-0">
+                        <h4 class="">@Model.DSGoiThoai.ElementAt(i).Name</h4>
+                        <div class="d-flex justify-content-center mb-3">
+                            <small class="mr-2"><i class="fa fa-rss text-primary"></i> @Model.DSGoiThoai.ElementAt(i).Luu_luong GB </small>
+                            <small class="mr-2"><i class="fa fa-rss-square text-primary"></i> @Model.DSGoiThoai.ElementAt(i).Thoi_han_d_ Ngày </small>
+                            <small class="mr-2"><i class="fa fa-shopping-cart text-primary"></i> Lượt mua: @Model.DSGoiThoai.ElementAt(i).Luot_mua</small>
+                        </div>
+                        <h6><i class="fa fa-tags text-primary"></i>Giá: @Model.DSGoiThoai.ElementAt(i).Gia đ </h6>
+                        <a href="" class="btn btn-primary px-4 mx-auto my-2">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div> <!-- gallery page 2 -->
+    <!-- gallery page 3 -->
+    <div id="tm-gallery-page-sms" class="tm-gallery-page @b3">
+        @for (int i = 0; i < Model.DSGoiSMS.Count(); i++)
+        {
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm mb-2">
+                    <img class="card-img-top mb-2" src="@Url.Content(Model.DSGoiSMS.ElementAt(i).Image)" alt="">
+                    <div class="card-body bg-light text-center p-0">
+                        <h4 class="">@Model.DSGoiSMS.ElementAt(i).Name</h4>
+                        <div class="d-flex justify-content-center mb-3">
+                            <small class="mr-2"><i class="fa fa-rss text-primary"></i> @Model.DSGoiSMS.ElementAt(i).Luu_luong GB </small>
+                            <small class="mr-2"><i class="fa fa-rss-square text-primary"></i> @Model.DSGoiSMS.ElementAt(i).Thoi_han_d_ Ngày </small>
+                            <small class="mr-2"><i class="fa fa-shopping-cart text-primary"></i> Lượt mua: @Model.DSGoiSMS.ElementAt(i).Luot_mua</small>
+                        </div>
+                        <h6><i class="fa fa-tags text-primary"></i>Giá: @Model.DSGoiSMS.ElementAt(i).Gia đ </h6>
+                        <a href="" class="btn btn-primary px-4 mx-auto my-2">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div> <!-- gallery page 3 -->
+</div>
+

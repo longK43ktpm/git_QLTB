@@ -1,4 +1,4 @@
-namespace QLthueBao.Models
+namespace QLthueBao.Models.DomainModel
 {
     using System;
     using System.Collections.Generic;
@@ -19,19 +19,20 @@ namespace QLthueBao.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         public int? Gia { get; set; }
 
-        public TimeSpan Thoi_han { get; set; }
+        [Column("Thoi_han(d)")]
+        public float Thoi_han_d_ { get; set; }
 
-        public int? Luu_luong { get; set; }
+        public float? Luu_luong { get; set; }
 
         public string Image { get; set; }
 
         public int? Luot_mua { get; set; }
-
+        public string MoTa { get; set; }
         public int Id_Loai_cuoc { get; set; }
 
         public bool? Trang_thai { get; set; }

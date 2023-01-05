@@ -1,0 +1,22 @@
+﻿@model QLthueBao.Models.ViewModel.ThanhToanGoiViewModel
+
+<div class="container">
+    <div class="col-md-6 border rounded" style="margin-top:50px">
+        <h5 class="mt-2 mb-2 spec-2">Thanh toán gói cước:</h5>
+        <div class="row p-2 bg-white ">
+            <div class="mt-1 mb-0 spec-1" style="margin-left:20px; margin-right:15px"><span>Số dư tài khoản</span></div>
+            <h5 class="mt-1 mb-0 spec-1 text-success">@Model.User.Tai_khoan_goc</h5>
+        </div>
+        <div class="row p-2 bg-white ">
+            <div class="mt-0 mb-1 spec-1" style="margin-left:20px; margin-right:15px"><span>Tổng thanh toán</span></div>
+            <h5 class="mt-0 mb-1 spec-1 text-success">@Model.GoiCuoc.Gia</h5>
+        </div>
+        @{
+            Session["tb"] = "Đăng ký gói thành công";
+            Session["action"] = "goicuoc";
+            Session["controller"] = "home";
+        }
+        <a href="@Url.Action("thongbao", "home")" class="cart-btn btn-primary" style="margin-left:20px; margin-bottom:20px">Xác nhận</a>
+        
+    </div>
+</div>

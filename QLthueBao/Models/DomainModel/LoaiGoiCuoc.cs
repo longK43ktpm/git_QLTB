@@ -1,4 +1,4 @@
-namespace QLthueBao.Models
+namespace QLthueBao.Models.DomainModel
 {
     using System;
     using System.Collections.Generic;
@@ -6,22 +6,21 @@ namespace QLthueBao.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("NhaMang")]
-    public partial class NhaMang
+    [Table("LoaiGoiCuoc")]
+    public partial class LoaiGoiCuoc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NhaMang()
+        public LoaiGoiCuoc()
         {
-            Users = new HashSet<User>();
+            GoiCuocs = new HashSet<GoiCuoc>();
         }
 
         public int Id { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<GoiCuoc> GoiCuocs { get; set; }
     }
 }

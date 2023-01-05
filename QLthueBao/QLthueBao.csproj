@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -127,19 +128,34 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\admin\adminAreaRegistration.cs" />
     <Compile Include="Areas\admin\Controllers\homeController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GiaoDichController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\GDGoiCuoc.cs" />
-    <Compile Include="Models\GDNapDienThoai.cs" />
-    <Compile Include="Models\GoiCuoc.cs" />
-    <Compile Include="Models\KhuyenMai.cs" />
-    <Compile Include="Models\LoaiGoiCuoc.cs" />
-    <Compile Include="Models\Model1.cs" />
-    <Compile Include="Models\NhaMang.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DomainModel\Admin.cs" />
+    <Compile Include="Models\DomainModel\GDGoiCuoc.cs" />
+    <Compile Include="Models\DomainModel\GDNapDienThoai.cs" />
+    <Compile Include="Models\DomainModel\GoiCuoc.cs" />
+    <Compile Include="Models\DomainModel\KhuyenMai.cs" />
+    <Compile Include="Models\DomainModel\LoaiGoiCuoc.cs" />
+    <Compile Include="Models\DomainModel\Model1.cs" />
+    <Compile Include="Models\DomainModel\NhaMang.cs" />
+    <Compile Include="Models\DomainModel\User.cs" />
+    <Compile Include="Models\Service\GoiCuocService.cs" />
+    <Compile Include="Models\Service\HomePageService.cs" />
+    <Compile Include="Models\Service\KhuyenMaiService.cs" />
+    <Compile Include="Models\Service\LoginService.cs" />
+    <Compile Include="Models\Service\SignUpService.cs" />
+    <Compile Include="Models\Service\UserService.cs" />
+    <Compile Include="Models\ViewModel\ChiTietViewModel.cs" />
+    <Compile Include="Models\ViewModel\GoiCuocViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomePageViewModel.cs" />
+    <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\SignUpViewModel.cs" />
+    <Compile Include="Models\ViewModel\ThanhToanGoiViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,13 +172,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\all.min.css" />
-    <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
-    <Content Include="Content\css\meanmenu.css" />
-    <Content Include="Content\css\nice-select.css" />
-    <Content Include="Content\css\normalize.css" />
-    <Content Include="Content\css\owl.carousel.min.css" />
-    <Content Include="Content\css\slick.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\style.min.css" />
     <Content Include="Content\css\style2.css" />
@@ -176,7 +186,6 @@
     <Content Include="Content\img\about-1.jpg" />
     <Content Include="Content\img\about-2.jpg" />
     <Content Include="Content\img\banner.jpg" />
-    <Content Include="Content\img\banner1.png" />
     <Content Include="Content\img\blog-1.jpg" />
     <Content Include="Content\img\blog-2.jpg" />
     <Content Include="Content\img\blog-3.jpg" />
@@ -403,9 +412,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\GoiCuoc.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\UserMenu.cshtml" />
+    <Content Include="Views\Home\ChiTiet.cshtml" />
+    <Content Include="Views\GiaoDich\NapTien.cshtml" />
+    <Content Include="Views\GiaoDich\ThanhToanThe.cshtml" />
+    <Content Include="Views\GiaoDich\LichSu.cshtml" />
+    <Content Include="Views\GiaoDich\TraCuoc.cshtml" />
+    <Content Include="Views\Shared\ThongBao.cshtml" />
+    <Content Include="Views\GiaoDich\ThanhToanGoi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -458,7 +475,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
